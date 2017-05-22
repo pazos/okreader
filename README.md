@@ -136,7 +136,10 @@ sync
 
 Booting from the external microSD card
 --------------------------------------
-TODO
+Stock u-boot support booting from both internal and external sdcards by modifying uboot environment (at offset 768)
+
+TODO: add logic to boot from sdcard to u-boot environment
+      add a proper way to write to the environment (dd+hex, forcing CRC mismatch?) 
 
 
 Notes for developers
@@ -149,9 +152,10 @@ The first partition on the factory SD starts at the 15 MiB offset. The space bef
     0                        | 1                     | MBR
     1                        | 1                     | Serial no.
     2                        | Variable              | U-Boot
+    768                      | 128                   | U-Boot environment
     1023                     | 1                     | Unknown
     1024                     | 1                     | HWCONFIG
-    2048                     | Variable              | Linux
+    2048                     | Variable              | Linux uImage
     14335                    | 1                     | Waveform header?
     14336                    | Variable?             | Waveform
 
